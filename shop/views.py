@@ -13,3 +13,11 @@ class products(ListView):
         context = super(products, self).get_context_data()
         context['category'] = self.kwargs.get('category')
         return context
+
+class product_detail(DetailView):
+    model = Product
+    template_name = 'shop/product_detail.html'
+
+def categories_component(request):
+    return render(request, 'shop/components/categories.html')
+
