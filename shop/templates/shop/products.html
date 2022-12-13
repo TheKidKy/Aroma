@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load render_partial %}
+{% load thumbnail %}
 
 {% block title %} Shop {% endblock title %}
 
@@ -46,7 +47,9 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <img class="card-img" src="{{ product.image.url }}" alt="">
+                      {% thumbnail product.image "300x300" crop="center" as im %}
+                        <img class="card-img" src="{{ im.url }}" alt="">
+                      {% endthumbnail %}
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 
 {% block title %} {{ product.title }} {% endblock %}
 
@@ -10,7 +11,9 @@
 				<div class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="{{ product.image.url }}" alt="">
+                            {% thumbnail product.image "555x600" crop='center' quality=100 as im %}
+							    <img class="img-fluid" src="{{ im.url }}" alt="">
+                            {% endthumbnail %}
 						</div>
 						<!-- <div class="single-prd-item">
 							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">

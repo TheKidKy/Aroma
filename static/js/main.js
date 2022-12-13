@@ -116,4 +116,11 @@ $(function() {
   
 });
 
+function catSelected(cat) {
+  cat = $('#cat-input:checked').val().toLowerCase();
+  $.get('?category=' + cat).then(res => {
+    console.log(res);
+  });
+}
+
 
