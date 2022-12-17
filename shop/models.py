@@ -42,6 +42,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images', null=True, blank=True)
     price = models.IntegerField()
     description = models.TextField(db_index=True)
+    create_date = models.DateField(null=True)
     slug = models.SlugField(default="", null=False, db_index=True, blank=True, max_length=200, unique=True,
                             verbose_name='slug title')
     category = models.ManyToManyField(ProductCategory)
