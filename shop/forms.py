@@ -5,8 +5,9 @@ class comment_model_form(forms.ModelForm):
     class Meta:
         model = ProductComment
         fields = '__all__'
+        exclude = ['product']
         widgets = {
-            'subject': forms.TextInput(attrs={
+            'user_name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'name',
                 'placeholder': 'Your Full name'

@@ -12,3 +12,4 @@ class productAdmin(admin.ModelAdmin):
 admin.site.register(models.Product, productAdmin)
 admin.site.register(models.ProductCategory)
 admin.site.register(models.ProductBrand)
+admin.site.register(models.ProductComment)
