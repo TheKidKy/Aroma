@@ -3,8 +3,8 @@ from django.db.models import Count
 from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 
-from .models import Product, ProductCategory, ProductBrand
-from .forms import comment_model_form
+from .models import Product, ProductCategory, ProductBrand, ProductComment
+from .forms import CommentForm
 
 
 # Create your views here.
@@ -25,16 +25,20 @@ class product_detail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(product_detail, self).get_context_data(**kwargs)
-        context['comment_form'] = comment_model_form
+        context['comment_form'] = CommentForm
 
         return context
 
 
 def add_comment(request, id):
     if request.method == 'POST':
-        comment_form = comment_model_form(request.POST)
+        comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
-            comment_form.save()
+            msg = comment_form.cleaned_data.get('message')
+            user = comment_form.cleaned_data.get('user_name')
+            email = comment_form.cleaned_data.get('email')
+            new_comment = ProductComment(message=msg, user_name=user, email=email, product_id=id)
+            new_comment.save()
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
