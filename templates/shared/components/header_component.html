@@ -12,7 +12,7 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="{% url 'home-page' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'home-page' %}">Home</a></li>
               <li class="nav-item submenu dropdown">
                 <a href="{% url "products-page" %}" class="nav-link" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
@@ -41,7 +41,7 @@
                   <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'contact-page' %}">Contact</a></li>
             </ul>
 
             <ul class="nav-shop">

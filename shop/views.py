@@ -47,3 +47,9 @@ def categories_component(request):
     product_brands = ProductBrand.objects.filter(is_active=True).annotate(product_count=Count('product'))
     return render(request, 'shop/components/categories.html', context={'categories': product_categories, 'brands': product_brands})
 
+
+def comments_component(request, id):
+    product_id = id
+    comments = ProductComment.objects.filter(product_id=product_id)
+    return render(request, 'shop/components/comments_component.html', context={'comments': comments})
+

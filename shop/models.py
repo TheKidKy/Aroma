@@ -69,6 +69,7 @@ class ProductComment(models.Model):
     user_name = models.CharField(max_length=35)
     email = models.EmailField()
     message = models.TextField()
+    create_date = models.DateField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return self.user_name
