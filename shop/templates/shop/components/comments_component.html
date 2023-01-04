@@ -1,5 +1,6 @@
 <div class="col-lg-6">
     <div class="comment_list">
+    {% if comments %}
         {% for cm in comments %}
         <div class="review_item">
             <div class="media">
@@ -15,6 +16,11 @@
             <p>{{ cm.message }}</p>
         </div>
         {% endfor %}
+
+        {% else %}
+        <p class="alert alert-dark">No comments yet</p>
+    {% endif %}
+
 {#        <div class="review_item reply">#}
 {#            <div class="media">#}
 {#                <div class="d-flex">#}
