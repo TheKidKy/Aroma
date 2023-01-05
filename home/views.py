@@ -1,9 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+from shop.models import Product
 
 def home_page(request):
-    return render(request, 'home/index.html')
+    latest_products = Product.objects.all()[:3]
+    print(latest_products)
+    return render(request, 'home/index.html', context={'latest_products': latest_products})
 
 
 # ---- references and components ----

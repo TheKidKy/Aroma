@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load render_partial %}
+{% load thumbnail %}
 
 {% block title %} Aroma Shop - Home {% endblock %}
 
@@ -33,27 +34,31 @@
     <!--================ Hero Carousel start =================-->
     <section class="section-margin mt-0">
       <div class="owl-carousel owl-theme hero-carousel">
+          {% for item in latest_products %}
         <div class="hero-carousel__slide">
-          <img src="/static/img/home/hero-slide1.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
-            <h3>Wireless Headphone</h3>
-            <p>Accessories Item</p>
+        {% thumbnail item.image '300x270' quality=100 crop='center' as im %}
+          <img src="{{ im.url }}" alt="" class="img-fluid">
+        {% endthumbnail %}
+          <a href="{% url 'product-detail' slug=item.slug %}" class="hero-carousel__slideOverlay">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.category.first }}</p>
           </a>
         </div>
-        <div class="hero-carousel__slide">
-          <img src="/static/img/home/hero-slide2.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
-            <h3>Wireless Headphone</h3>
-            <p>Accessories Item</p>
-          </a>
-        </div>
-        <div class="hero-carousel__slide">
-          <img src="/static/img/home/hero-slide3.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
-            <h3>Wireless Headphone</h3>
-            <p>Accessories Item</p>
-          </a>
-        </div>
+          {% endfor %}
+{#        <div class="hero-carousel__slide">#}
+{#          <img src="/static/img/home/hero-slide2.png" alt="" class="img-fluid">#}
+{#          <a href="#" class="hero-carousel__slideOverlay">#}
+{#            <h3>Wireless Headphone</h3>#}
+{#            <p>Accessories Item</p>#}
+{#          </a>#}
+{#        </div>#}
+{#        <div class="hero-carousel__slide">#}
+{#          <img src="/static/img/home/hero-slide3.png" alt="" class="img-fluid">#}
+{#          <a href="#" class="hero-carousel__slideOverlay">#}
+{#            <h3>Wireless Headphone</h3>#}
+{#            <p>Accessories Item</p>#}
+{#          </a>#}
+{#        </div>#}
       </div>
     </section>
     <!--================ Hero Carousel end =================-->
