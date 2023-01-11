@@ -20,6 +20,16 @@ class products(ListView):
         context = super(products, self).get_context_data()
         return context
 
+    def get_queryset(self):
+        query = super(products, self).get_queryset()
+        product_name = self.request.GET.get('search')
+
+        query = query.filter(is_active=True)
+
+        if product_name is not None:
+            query = query.filter(title__icontains=product_name)
+
+        return query
 
 class product_detail(DetailView):
     model = Product
@@ -60,3 +70,10 @@ def comments_component(request, id):
     product_id = id
     comments = ProductComment.objects.filter(product_id=product_id)
     return render(request, 'shop/components/comments_component.html', context={'comments': comments})
+
+
+def search(request):
+    if request.method == 'GET':
+        product_name = request.GET('search-products')
+        status = Product.objects.filter(title__icontains=product_name)
+
