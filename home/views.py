@@ -3,7 +3,7 @@ from django.shortcuts import render
 from shop.models import Product
 
 def home_page(request):
-    latest_products = Product.objects.all()[:3]
+    latest_products = Product.objects.all().order_by('-create_date')[:3]
     print(latest_products)
     return render(request, 'home/index.html', context={'latest_products': latest_products})
 

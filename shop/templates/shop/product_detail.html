@@ -301,6 +301,7 @@
 	<!--================End Product Description Area =================-->
 
 	<!--================ Start related Product area =================-->
+    {% if related_products %}
 	<section class="related-product-area section-margin--small mt-0">
 		<div class="container">
 			<div class="section-intro pb-60px">
@@ -308,51 +309,25 @@
         <h2>Related <span class="section-intro__style">Products</span></h2>
       </div>
 			<div class="row mt-30">
+            {% for group in related_products %}
         <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                {% for product in group %}
           <div class="single-search-product-wrapper">
-              {% for group in related_products %}
             <div class="single-search-product d-flex">
-            {% for product in group %}
               <a href="#"><img src="{{ product.image.url }}" alt=""></a>
               <div class="desc">
                   <a href="#" class="title">{{ product.title }}</a>
                   <div class="price">${{ product.price }}</div>
               </div>
-                {% endfor %}
-            </div>
-              {% endfor %}
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper">
-            <div class="single-search-product d-flex">
-              <a href="#"><img src="../../../static/img/product/product-sm-4.png" alt=""></a>
-              <div class="desc">
-                  <a href="#" class="title">Gray Coffee Cup</a>
-                  <div class="price">$170.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="#"><img src="../../../static/img/product/product-sm-5.png" alt=""></a>
-              <div class="desc">
-                <a href="#" class="title">Gray Coffee Cup</a>
-                <div class="price">$170.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="#"><img src="../../../static/img/product/product-sm-6.png" alt=""></a>
-              <div class="desc">
-                <a href="#" class="title">Gray Coffee Cup</a>
-                <div class="price">$170.00</div>
-              </div>
             </div>
           </div>
+        {% endfor %}
         </div>
-
+            {% endfor %}
       </div>
 		</div>
 	</section>
+    {% endif %}
 	<!--================ end related Product area =================-->
 
 {% endblock content %}
