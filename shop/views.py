@@ -72,7 +72,7 @@ def comments_component(request, id):
     return render(request, 'shop/components/comments_component.html', context={'comments': comments})
 
 
-def search(request):
+def search(request): # product search view
     if request.method == 'GET':
         product_name = request.GET('search-products')
         status = Product.objects.filter(title__icontains=product_name)
