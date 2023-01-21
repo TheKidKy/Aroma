@@ -2,21 +2,25 @@ from django import forms
 from django.forms import ValidationError
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={
+    full_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
-        'id': 'username'
+        'id': 'username',
+        'placeholder': 'Full Name'
     }))
     email = forms.EmailField(widget=forms.EmailInput(attrs={
         'class': 'form-control',
-        'id': 'email'
+        'id': 'email',
+        'placeholder': 'Email Address'
     }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control',
-        'id': 'password'
+        'id': 'password',
+        'placeholder': 'Password'
     }))
     confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control',
-        'id': 'confirm-password'
+        'id': 'confirm-password',
+        'placeholder': 'Confirm Password'
     }))
 
     def clean_confirm_password(self):
