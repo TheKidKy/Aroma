@@ -31,3 +31,7 @@ class RegisterForm(forms.Form):
             return confirm_password
         else:
             raise ValidationError('The value of password and password confirm are not the same!')
+
+
+class LoginForm(forms.Form):
+    pass

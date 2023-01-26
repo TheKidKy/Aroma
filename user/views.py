@@ -18,13 +18,23 @@ class RegisterView(View):
             username = register_form.cleaned_data.get('full_name')
             password = register_form.cleaned_data.get('password')
             email = register_form.cleaned_data.get('email')
+            user_exist: bool = user.objects.filter(email=email).exists()
 
-        user_exist: bool = user.objects.filter(email=email).exists()
-        if user_exist:
-            register_form.add_error('email', 'this email is used by another user')
-        else:
-            new_user = user(username=username, password=password, email=email)
-            new_user.set_password(password)
-            new_user.save()
+            if user_exist:
+                register_form.add_error('email', 'this email is used by another user')
+            elif len(password) < 8:
+                register_form.add_error('password', 'this password is too short')
+            else:
+                new_user = user(username=username, password=password, email=email)
+                new_user.set_password(password)
+                new_user.save()
 
         return render(request, 'user/register.html', context={'register_form': register_form})
+
+
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'user/login.html')
+
+    def post(self, request):
+        pass

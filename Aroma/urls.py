@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('shop/', include('shop.urls')),
     path('contact/', ContactFormView.as_view(), name='contact-page'),
-    path('register/', include('user.urls'))
+    path('', include('user.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
