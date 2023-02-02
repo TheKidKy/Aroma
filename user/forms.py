@@ -34,4 +34,13 @@ class RegisterForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    pass
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'id': 'name',
+        'placeholder': 'Email Address'
+    }))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'id': 'name',
+        'placeholder': 'Password'
+    }))
