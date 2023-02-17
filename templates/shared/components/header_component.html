@@ -39,7 +39,7 @@
                 {% if not request.user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'register-page' %}">Register</a></li>
                     {% else %}
-                    <li class="nav-item"><a class="nav-link">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 {% endif %}
               <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
               <li class="nav-item"><a class="button button-header" href="{% url 'products-page' %}">Buy Now</a></li>

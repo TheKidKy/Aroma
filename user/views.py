@@ -58,3 +58,7 @@ class LoginView(View):
         return render(request, 'user/login.html', context={'login_form': login_form})
 
 
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse('login-page'))
