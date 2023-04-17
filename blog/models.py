@@ -20,7 +20,7 @@ class Post(models.Model):
     description = models.TextField()
     publish_date = models.DateField(auto_now_add=True)
     author = models.CharField(max_length=30)
-    tag = models.ManyToManyField(PostTag, verbose_name='Post tags', null=True)
+    tag = models.ManyToManyField(PostTag, verbose_name='Post tags', null=True, blank=True)
     is_active = models.BooleanField(default=False, verbose_name='Active')
 
     def __str__(self):

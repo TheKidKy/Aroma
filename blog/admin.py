@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, PostTag
 
 class BlogAdmin(admin.ModelAdmin):
     list_filter = ['is_active']
@@ -8,3 +8,4 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post, BlogAdmin)
+admin.site.register(PostTag)
