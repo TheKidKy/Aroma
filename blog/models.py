@@ -16,11 +16,11 @@ class PostTag(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=45)
-    image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='images', null=True, blank=True)
     description = models.TextField()
     publish_date = models.DateField(auto_now_add=True)
     author = models.CharField(max_length=30)
-    tag = models.ManyToManyField(PostTag, verbose_name='Post tags')
+    tag = models.ManyToManyField(PostTag, verbose_name='Post tags', null=True)
     is_active = models.BooleanField(default=False, verbose_name='Active')
 
     def __str__(self):
