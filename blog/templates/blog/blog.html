@@ -100,7 +100,7 @@
                               <div class="blog_post">
                                   <img src="{{ post.image.url }}" alt="">
                                   <div class="blog_details">
-                                      <a href="post-detail.html">
+                                      <a href="{% url 'post-detail' slug=post.slug %}">
                                           <h2>{{ post.title }}</h2>
                                       </a>
                                       <p>{{ post.description }}</p>
