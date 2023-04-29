@@ -17,3 +17,11 @@ class BlogListView(ListView):
         context['tags'] = post_tags
         return context
 
+
+class PostDetailView(DetailView):
+    template_name = 'blog/post-detail.html'
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data()
+        return context
