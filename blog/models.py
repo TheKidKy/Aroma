@@ -12,13 +12,34 @@ class PostTag(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Author(models.Model):
+    JUNIOR = 'JR'
+    SENIOR = 'SR'
+    AUTHOR_LEVEL_CHOICES = [
+        (JUNIOR, 'Junior'),
+        (SENIOR, 'Senior')
+    ]
+
+    name = models.CharField(max_length=30)
+    level = models.CharField(max_length=2, choices=AUTHOR_LEVEL_CHOICES, default=JUNIOR)
+    bio = models.TextField()
+
+    class Meta:
+        verbose_name = 'Author'
+        verbose_name_plural = 'Authors'
+
+    def __str__(self):
+        return self.name
+
 
 class Post(models.Model):
     title = models.CharField(max_length=45)
     image = models.ImageField(upload_to='images', null=True, blank=True)
     description = models.TextField()
     publish_date = models.DateField(auto_now_add=True)
-    author = models.CharField(max_length=30)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
     tag = models.ManyToManyField(PostTag, verbose_name='Post tags', blank=True)
     is_active = models.BooleanField(default=False, verbose_name='Active')
     slug = models.SlugField(default="", null=False, db_index=True, blank=True, editable=False, unique=True)

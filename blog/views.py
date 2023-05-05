@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
-from .models import Post, PostTag
+from .models import Post, PostTag, Author
 
 class BlogListView(ListView):
     model = Post
