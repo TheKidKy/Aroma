@@ -39,7 +39,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images', null=True, blank=True)
     description = models.TextField()
     publish_date = models.DateField(auto_now_add=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     tag = models.ManyToManyField(PostTag, verbose_name='Post tags', blank=True)
     is_active = models.BooleanField(default=False, verbose_name='Active')
     slug = models.SlugField(default="", null=False, db_index=True, blank=True, editable=False, unique=True)
