@@ -34,6 +34,7 @@ class Author(models.Model):
         return self.name
 
 
+
 class Post(models.Model):
     title = models.CharField(max_length=45)
     image = models.ImageField(upload_to='images', null=True, blank=True)
