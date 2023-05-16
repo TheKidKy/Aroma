@@ -4780,3 +4780,7 @@ a {
         padding-bottom: 115px !important
     }
 }
+
+.post_tag a:hover {
+    color: #384aeb;
+}
