@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
+{% load poll_extras %}
 
 {% block title %} {{ post.title }} {% endblock %}
 
@@ -21,7 +22,7 @@
 													<div class="blog_info text-right">
 															<div class="post_tag">
 																{% for tag in post.tag.all %}
-																	<a href="#">{{ tag }} </a><span>,</span>
+																	<a href="#">{{ tag }} </a>
 																{% endfor %}
 															</div>
 															<ul class="blog_meta list">
