@@ -5,7 +5,9 @@ from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.http import HttpRequest
 
-from .models import Post, PostTag, Author
+from utils.http_service import get_client_ip
+
+from .models import Post, PostTag, Author, PostVisit
 
 class BlogListView(ListView):
     model = Post
@@ -37,6 +39,22 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data()
+        request = self.request
+        loaded_post = self.object
+        user_id = None
+        user_ip = get_client_ip(request)
+
+        if request.user.is_authenticated:
+            user_id = request.user.id
+
+        has_been_visited = PostVisit.objects.filter(ip__iexact=user_ip, post_id=loaded_post.id).exists()
+
+        if not has_been_visited:
+            new_visit = PostVisit(user_id=user_id, ip=user_ip, post_id=loaded_post.id)
+            new_visit.save()
+
+        context['visit_count'] = PostVisit.objects.filter(post_id=loaded_post.id).count()
+        
         return context
 
 

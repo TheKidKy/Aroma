@@ -22,7 +22,7 @@
 													<div class="blog_info text-right">
 															<div class="post_tag">
 																{% for tag in post.tag.all %}
-																	<a href="#">{{ tag }} </a>
+																	<a href="#">{{ tag }} </a> {% if not forloop.last %}, {% endif %}
 																{% endfor %}
 															</div>
 															<ul class="blog_meta list">
@@ -37,7 +37,7 @@
 																			</a>
 																	</li>
 																	<li>
-																			<a href="#">1.2M Views
+																			<a href="#">{{ visit_count }} Views
 																					<i class="lnr lnr-eye"></i>
 																			</a>
 																	</li>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 
+from django.contrib.auth.models import User
+
 
 class PostTag(models.Model):
     title = models.CharField(max_length=20, db_index=True)
@@ -55,3 +57,16 @@ class Post(models.Model):
     def save(self, *args, **kwargs): # Save function is used to save the arguments in the database.
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+
+class PostVisit(models.Model):
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, verbose_name='Post')
+    ip = models.CharField(max_length=30, verbose_name='User IP')
+    user = models.ForeignKey(User, null=True, blank=True, verbose_name='User', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.post.title} / {self.ip}'
+
+    class Meta:
+        verbose_name = 'Post visit'
+        verbose_name_plural = 'Post visits'
