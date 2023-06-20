@@ -70,3 +70,20 @@ class PostVisit(models.Model):
     class Meta:
         verbose_name = 'Post visit'
         verbose_name_plural = 'Post visits'
+
+
+class PostComment(models.Model):
+    subject = models.CharField(max_length=30)
+    content = models.TextField()
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    create_date = models.DateField(auto_now_add=True, verbose_name='Date', null=True, blank=True)
+    parent = models.ForeignKey('PostComment', null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.subject}'
+    
+    class Meta:
+        verbose_name = 'Post Comment'
+        verbose_name_plural = 'Post Comments'
