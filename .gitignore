@@ -1,0 +1,11 @@
+# virtualenv folders
+.venv/
+.env/
+.virtualenv/
+
+# macos files
+.DS_Store
+
+# db files
+db.sqlite3
+
